@@ -45,9 +45,14 @@
 # [st]: https://jbhender.github.io/Stats507/F21/
 # ***
 
+# # Correction for this homework
+# Comment from GSI: 
+# - Q0: -3 for not provide both raw and formatted versions.
+
 # Below is the raw markdown:
     
-'''
+```
+---
 This is *quesiton o* for [problem set 1][ps] of [Stats 507][st].  
 
 >Question o is about Markdown.
@@ -71,7 +76,8 @@ Finally, we can make an enumerated list:
 
 [ps]: https://jbhender.github.io/Stats507/F21/ps/ps1.html
 [st]: https://jbhender.github.io/Stats507/F21/
-'''
+---
+```
 
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
