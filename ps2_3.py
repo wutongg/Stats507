@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 # ---
 # jupyter:
 #   jupytext:
@@ -52,8 +52,8 @@ df_all = pd.DataFrame()
 for k in dic.keys():
     # We need to select columns first since each cohort has different 
     # variables.
-    x = dic[k][['SEQN', 'RIDAGEYR', 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 
-                     'RIDSTATR', 'SDMVPSU', 'SDMVSTRA', 'WTMEC2YR', 
+    x = dic[k][['SEQN', 'RIDAGEYR', 'RIAGENDR',  'RIDRETH3', 'DMDEDUC2', 
+		'DMDMARTL', 'RIDSTATR', 'SDMVPSU', 'SDMVSTRA', 'WTMEC2YR', 
                      'WTINT2YR']].copy()
     # We add one column for each dataframes for identifying cohorts.
     x.loc[:, 'year'] = k
@@ -65,7 +65,7 @@ for k in dic.keys():
 # data.
 
 var = ['RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 'RIDAGEYR', 'RIDSTATR', 'SEQN', 
-       'SDMVPSU', 'SDMVSTRA']
+       'SDMVPSU', 'SDMVSTRA', 'RIAGENDR']
 for v in var:
     if v == 'RIDRETH3':
         df_all[v] = pd.Categorical(df_all[v].replace({1: 'Mexican American',
@@ -84,6 +84,11 @@ for v in var:
     elif v == 'RIDSTATR':
         df_all[v] = pd.Categorical(df_all[v].replace({1: 'Interviewed only', 
         2: 'Both interviewed and MEC examined'}))
+    elif v == 'RIAGENDR':
+        df_all[v] = pd.Categorical(df_all[v].replace({
+        1: 'Male',
+        2: 'Female'
+        })
     else: 
         # Those variables are integers but stored in floats.
         df_all[v] = df_all[[v]].astype('int')
@@ -91,6 +96,7 @@ for v in var:
 # Rename the columns with literate variable names using all lower case.
 df_all.rename(columns={'SEQN': 'unique id',
                        'RIDAGEYR': 'age',
+		       'RIAGENDR': 'gender',
                        'RIDRETH3': 'race and ethnicity',
                        'DMDEDUC2': 'education',
                        'DMDMARTL': 'marital status',
@@ -192,5 +198,4 @@ case1 = len(df_all)
 case2 = len(df_oh_all)
 print("There are %d cases in the dataset from part a." % case1)
 print("There are %d cases in the dataset from part b." % case2)
-
 
