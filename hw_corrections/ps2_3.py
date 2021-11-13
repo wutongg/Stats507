@@ -88,17 +88,21 @@ for v in var:
         # Those variables are integers but stored in floats.
         df_all[v] = df_all[[v]].astype('int')
 
+# # Correction
+# Comment from GSI:
+# - Q3: -2 for some names are too long.
+
 # Rename the columns with literate variable names using all lower case.
-df_all.rename(columns={'SEQN': 'unique id',
+df_all.rename(columns={'SEQN': 'id',
                        'RIDAGEYR': 'age',
-                       'RIDRETH3': 'race and ethnicity',
+                       'RIDRETH3': 'race',
                        'DMDEDUC2': 'education',
                        'DMDMARTL': 'marital status',
-                       'RIDSTATR': 'interview/examination status',
-                       'SDMVPSU': 'masked variance pseudo-psu',
-                       'SDMVSTRA': 'masked variance pseudo-stratum',
-                       'WTMEC2YR': 'mec exam weight',
-                       'WTINT2YR': 'interview weight'}, inplace=True)                                                  
+                       'RIDSTATR': 'exam status',
+                       'SDMVPSU': 'psu',
+                       'SDMVSTRA': 'strata',
+                       'WTMEC2YR': 'exam wt',
+                       'WTINT2YR': 'interview wt'}, inplace=True)                                                  
 
 print(df_all.head())
 
